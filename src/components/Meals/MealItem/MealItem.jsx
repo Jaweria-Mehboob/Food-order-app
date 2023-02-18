@@ -21,7 +21,7 @@ const MealItem = (props) => {
   return (
     <li className="flex border-b items-baseline justify-between pb-4 m-4">
       <div>
-        <h3 className="font-bold">{name}</h3>
+        <h3 className="font-bold text-lg">{name}</h3>
         <div className=" italic text-sm sm:text-base">{description}</div>
         <div className="text-[#9D4A0A] font-bold">{price}</div>
       </div>

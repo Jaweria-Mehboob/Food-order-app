@@ -7,7 +7,7 @@ const CartItem = (props) => {
         <h2 className="font-bold mt-7 mb-3">{name}</h2>
         <div className="flex gap-10 items-center text-xs font-bold mb-2.5">
           <span className="text-primary">{price}</span>
-          <span className="border py-1.5 px-2.5 rounded">x {amount}</span>
+          <span className="border py-1 px-2.5 rounded">x {amount}</span>
         </div>
       </div>
       <div className="text-primary mt-5 mr-1">

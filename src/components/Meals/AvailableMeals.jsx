@@ -1,43 +1,35 @@
+import { collection, getDocs, query } from "firebase/firestore";
+import { db } from "../../firebase";
+
+import { useState, useEffect } from "react";
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
-
-const DUMMY_MEALS = [
-  {
-    id: "m1",
-    name: "Sushi",
-    description: "Finest fish and veggies",
-    price: 22.99,
-  },
-  {
-    id: "m2",
-    name: "Schnitzel",
-    description: "A german specialty!",
-    price: 16.5,
-  },
-  {
-    id: "m3",
-    name: "Barbecue Burger",
-    description: "American, raw, meaty",
-    price: 12.99,
-  },
-  {
-    id: "m4",
-    name: "Green Bowl",
-    description: "Healthy...and green...",
-    price: 18.99,
-  },
-];
+import LoadingIcon from "./LoadingIcon";
 
 const AvailableMeals = () => {
-  const mealsList = DUMMY_MEALS.map((meal) => (
-    <MealItem
-      id={meal.id}
-      key={meal.id}
-      name={meal.name}
-      description={meal.description}
-      price={meal.price}
-    />
-  ));
+  const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMeals = async () => {
+      const querySnapshot = await getDocs(collection(db, "meals"));
+
+      const allMeals = [];
+
+      querySnapshot.forEach((doc) => {
+        allMeals.push({ id: doc.id, ...doc.data() });
+      });
+
+      setMeals(allMeals);
+      setIsLoading(false);
+    };
+
+    fetchMeals();
+  }, []);
+
+  if (isLoading) return <LoadingIcon />;
+
+  const mealsList = meals.map((meal) => <MealItem {...meal} key={meal.id} />);
 
   return (
     <section className="pb-8 sm:py-4 md:py-10 lg:py-20">

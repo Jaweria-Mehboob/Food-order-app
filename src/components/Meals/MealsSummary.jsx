@@ -1,6 +1,6 @@
 const MealsSummary = () => {
   return (
-    <section className="absolute px-3 py-2.5 sm:py-4 md:py-5 lg:py-6 text-white mx-auto text-center bg-[#3b393b] -top-44 -translate-x-1/2 left-1/2 drop-shadow-2xl rounded-lg w-10/12 sm:w-8/12 md:w-7/12 lg:w-3/6 max-w-4xl">
+    <section className="absolute px-3 py-2.5 sm:py-4 md:py-5 lg:py-6 text-white mx-auto text-center bg-[#3b393b] -top-44 -translate-x-1/2 left-1/2 drop-shadow-2xl rounded-lg w-10/12 sm:w-8/12 md:w-7/12 lg:w-3/6 max-w-2xl">
       <h2 className="  font-semibold mb-4 md:mb-6 lg:mb-8 text-base sm:text-xl md:text-2xl lg:text-3xl">
         Delicious Food, Delivered To You
       </h2>
