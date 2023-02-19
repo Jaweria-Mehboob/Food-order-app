@@ -1,4 +1,4 @@
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 
 import { useState, useEffect } from "react";
@@ -8,7 +8,6 @@ import LoadingIcon from "./LoadingIcon";
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchMeals = async () => {
@@ -21,15 +20,16 @@ const AvailableMeals = () => {
       });
 
       setMeals(allMeals);
-      setIsLoading(false);
     };
 
     fetchMeals();
   }, []);
 
-  if (isLoading) return <LoadingIcon />;
-
   const mealsList = meals.map((meal) => <MealItem {...meal} key={meal.id} />);
+
+  if (mealsList.length === 0) {
+    return <LoadingIcon />;
+  }
 
   return (
     <section className="pb-8 sm:py-4 md:py-10 lg:py-20">
